@@ -23,4 +23,35 @@ def search(word):
     return None, None
 
 
+def display(info, word):
+
+    if info == None:
+        print("Word not found.")
+        return
+
+    print()
+    print("Word:", word)
+
+    if "definition" in info:
+        print("Definition:", info["definition"])
+
+
 print("Environmental Thesaurus")
+print("Type exit to stop.")
+
+while True:
+
+    text = input("Enter a word: ")
+
+    if text.lower() == "exit":
+        break
+
+    if text.strip() == "":
+        continue
+
+    result, found = search(text)
+
+    if result:
+        display(result, found)
+    else:
+        print("Word not found.\n")
