@@ -1,10 +1,8 @@
 import json
 from difflib import get_close_matches
 
-file = open("environmental_thesaurus_40k.json", "r", encoding="utf-8")
-data = json.load(file)
-file.close()
-
+with open("environmental_thesaurus_40k.json", "r", encoding="utf-8") as file:
+    data = json.load(file)
 
 def search(word):
     word = word.lower().strip()
@@ -34,6 +32,34 @@ def display(info, word):
 
     if "definition" in info:
         print("Definition:", info["definition"])
+
+    if "synonyms" in info:
+        if len(info["synonyms"]) > 0:
+            print("Synonyms:", ", ".join(info["synonyms"]))
+
+    if "antonyms" in info:
+        if len(info["antonyms"]) > 0:
+            print("Antonyms:", ", ".join(info["antonyms"]))
+
+    if "example_sentences" in info:
+        if len(info["example_sentences"]) > 0:
+            print("Examples:")
+            for sentence in info["example_sentences"][:2]:
+                print("-", sentence)
+
+    if "related_terms" in info:
+        if len(info["related_terms"]) > 0:
+            print("Related Terms:", ", ".join(info["related_terms"][:5]))
+
+    if "difficulty" in info:
+        print("Difficulty:", info["difficulty"])
+
+    if "category" in info:
+        print("Category:", info["category"])
+
+    print()
+
+    
 
 
 print("Environmental Thesaurus")
